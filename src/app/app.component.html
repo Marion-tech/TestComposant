@@ -1,16 +1,18 @@
 <div class="container d-flex flex-column">
   <div class="d-flex flex-row">
     <input #myinput class="m-10 flex-fill" type="text" />
-    <button class="m-10 btn btn-primary" (click)="addFruit(myinput)">
-      Ajouter
-    </button>
+    <button class="m-10 btn btn-primary" (click)="addFruit()">Ajouter</button>
   </div>
+
+  <!-- <app-fruit #fruit (deleteF)="deleteFruit($event)" fruit="fraise"> </app-fruit> -->
+
   <ul class="list-primary">
     <app-fruit
       (deleteF)="deleteFruit($event)"
       [fruit]="f"
       *ngFor="let f of fruits"
     >
+      <p #ref>{{ f }}</p>
     </app-fruit>
   </ul>
 </div>

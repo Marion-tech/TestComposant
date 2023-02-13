@@ -1,4 +1,7 @@
 <li class="d-flex flex-align-items-center flex-justify-content-between">
-  <span>{{ fruit }}</span>
-  <button class="btn btn-primary" (click)="deleteFruit()">Supprimer</button>
+  <!-- <span>{{ fruit }}</span> -->
+  <ng-content></ng-content>
+  <button #ref class="btn btn-primary" (click)="deleteFruit()">
+    Supprimer
+  </button>
 </li>

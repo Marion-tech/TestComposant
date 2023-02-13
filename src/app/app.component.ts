@@ -1,4 +1,12 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  ViewChild,
+  ElementRef,
+  ViewChildren,
+  QueryList,
+} from '@angular/core';
+import { FruitComponent } from './fruit/fruit.component';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +15,18 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class AppComponent {
-  public fruits: string[] = ['kiwi', 'orange', 'fraise'];
+  public fruits: string[] = ['fraise'];
+  @ViewChild('myinput', { static: true })
+  public el!: ElementRef<HTMLInputElement>;
 
-  public addFruit(reference: HTMLInputElement) {
-    this.fruits.push(reference.value);
-    reference.value = '';
-    //console.log(reference.type, reference.value);
+  @ViewChildren(FruitComponent) public list!: QueryList<FruitComponent>;
+
+  // @ViewChild('fruit', { static: true })
+  // public elFruit!: ElementRef<FruitComponent>;
+
+  public addFruit() {
+    this.fruits.push(this.el?.nativeElement.value);
+    // console.log(this.list);
   }
 
   public deleteFruit(fruit: string) {
